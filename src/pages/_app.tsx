@@ -8,13 +8,19 @@ import CssBaseline from '@mui/material/CssBaseline'
 import theme from 'theme'
 import 'styles/globals.css'
 
+// ** Redux Imports
+import { Provider } from 'react-redux'
+import { store } from 'store'
+
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles styles={{ backgroundColor: 'blue' }} />
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles styles={{ backgroundColor: 'blue' }} />
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   )
 }
 
