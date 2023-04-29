@@ -1,5 +1,6 @@
 import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface DetailPageViewProps {
   title: string
@@ -10,6 +11,11 @@ interface DetailPageViewProps {
 }
 
 const DetailPageView = ({ title, tag, text, img, id }: DetailPageViewProps) => {
+  const [hide, setHide] = useState<boolean>(true)
+
+  const handleShow = () => setHide(false)
+  const handleHide = () => setHide(true)
+
   return (
     <Grid container>
       <Grid item xs={1} />
@@ -46,9 +52,35 @@ const DetailPageView = ({ title, tag, text, img, id }: DetailPageViewProps) => {
               <Chip label={item} />
             </Grid>
           ))}
-          <Grid item xs={12} sx={{ my: 5 }}>
-            <Typography>{text}</Typography>
-          </Grid>
+          {text.length > 30 ? (
+            <>
+              <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
+                {hide ? (
+                  <Typography>{text.slice(0, 30)}...</Typography>
+                ) : (
+                  <Typography sx={{ width: 30 }}>{text}</Typography>
+                )}
+              </Grid>
+              {hide ? (
+                <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                  <Button sx={{ p: 0 }}>
+                    <img src="/down.png" onClick={handleShow} />
+                  </Button>
+                </Grid>
+              ) : (
+                <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                  <Button sx={{ p: 0 }}>
+                    <img src="/top.png" onClick={handleHide} />
+                  </Button>
+                </Grid>
+              )}
+            </>
+          ) : (
+            <Grid item xs={12} sx={{ my: 5 }}>
+              <Typography>{text}</Typography>
+            </Grid>
+          )}
+
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
             <Link href={`/folder/edit/${id}`}>
               <img src="/edit.png" />
