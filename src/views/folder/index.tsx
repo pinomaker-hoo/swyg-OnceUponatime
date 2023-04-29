@@ -1,15 +1,18 @@
+// ** React Imports
+import { useState } from 'react'
+
 // ** Mui Imports
 import { Button, Grid, Typography } from '@mui/material'
-import AddFolder from 'components/addFolder'
-import DeleteFolder from 'components/deleteFolder'
 
 // ** Other View Imports
 import Folder from 'components/folder'
 import InsertModal from 'components/modal/insertModal'
-import { useState } from 'react'
+import AddFolder from 'components/addFolder'
+import DeleteFolder from 'components/deleteFolder'
 
 // ** Type Imports
 import { FolderType } from 'types'
+import Link from 'next/link'
 
 interface FolderPageViewProps {
   data: FolderType[]
@@ -24,8 +27,9 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
 
   const handleDelete = () => setDeleteFolder(true)
   const handleDeleteClose = () => setDeleteFolder(false)
+
   return (
-    <Grid container spacing={3}>
+    <Grid container>
       <Grid item xs={1} />
       <Grid item xs={10} sx={{ mt: 10 }}>
         <Grid container>
@@ -49,11 +53,13 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
           <Grid item xs={12} sx={{ mt: 5 }} />
           {data.map(({ id, title, count }: FolderType) => (
             <Grid item xs={6} key={id}>
-              {deleteFolder ? (
-                <DeleteFolder title={title} count={count} />
-              ) : (
-                <Folder title={title} count={count} />
-              )}
+              <Link href={`/folder/${id}/list`}>
+                {deleteFolder ? (
+                  <DeleteFolder title={title} count={count} />
+                ) : (
+                  <Folder title={title} count={count} />
+                )}
+              </Link>
             </Grid>
           ))}
           <Grid item xs={6}>

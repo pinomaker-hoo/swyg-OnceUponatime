@@ -30,7 +30,7 @@ const IntroPageView = () => {
             <img src="/logo.png" style={{ opacity: 0.3 }} />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
-            <Link href="/folder">
+            <Link href="/folder/list">
               <Button
                 variant="contained"
                 sx={{ backgroundColor: '#272A33', p: 1.5 }}
