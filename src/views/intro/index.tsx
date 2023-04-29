@@ -1,6 +1,7 @@
 // ** Mui Imports
 import { Button, Grid, Typography } from '@mui/material'
 import { textAlign } from '@mui/system'
+import Link from 'next/link'
 
 const IntroPageView = () => {
   return (
@@ -29,14 +30,16 @@ const IntroPageView = () => {
             <img src="/logo.png" style={{ opacity: 0.3 }} />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: '#272A33', p: 1.5 }}
-              fullWidth
-              size="large"
-            >
-              이야기를 들려주세요!
-            </Button>
+            <Link href="/folder">
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: '#272A33', p: 1.5 }}
+                fullWidth
+                size="large"
+              >
+                이야기를 들려주세요!
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
