@@ -1,7 +1,11 @@
+// ** React Imports
+import { useState } from 'react'
+
 // ** Mui Import
 import { Button, Grid, Typography } from '@mui/material'
+
+// ** Other View Imports
 import SelectModal from 'components/modal/selectModal'
-import { useState } from 'react'
 
 interface DeleteFolderProps {
   title: string
