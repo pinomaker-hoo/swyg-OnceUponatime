@@ -1,6 +1,11 @@
-import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
-import Link from 'next/link'
+// ** React Imports
 import { useState } from 'react'
+
+// ** Next Imports
+import Link from 'next/link'
+
+// ** Mui Imports
+import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
 
 interface DetailPageViewProps {
   title: string
@@ -8,9 +13,17 @@ interface DetailPageViewProps {
   text: string
   img: string
   id: number
+  tabId: string
 }
 
-const DetailPageView = ({ title, tag, text, img, id }: DetailPageViewProps) => {
+const DetailPageView = ({
+  title,
+  tag,
+  text,
+  img,
+  id,
+  tabId,
+}: DetailPageViewProps) => {
   const [hide, setHide] = useState<boolean>(true)
 
   const handleShow = () => setHide(false)
@@ -22,7 +35,9 @@ const DetailPageView = ({ title, tag, text, img, id }: DetailPageViewProps) => {
       <Grid item xs={10} sx={{ mt: 3 }}>
         <Grid container>
           <Grid item xs={2}>
-            <img src="/back.png" />
+            <Link href={`/folder/${tabId}/list`}>
+              <img src="/back.png" />
+            </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
             <Typography>{title}</Typography>
