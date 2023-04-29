@@ -54,17 +54,17 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
           <Grid item xs={12} sx={{ mt: 5 }} />
           {data.map(({ id, title, count }: FolderType) => (
             <Grid item xs={6} key={id} sx={{ mt: 1 }}>
-              <Link
-                href={`/folder/${id}/list`}
-                underline="none"
-                color="ActiveBorder"
-              >
-                {deleteFolder ? (
-                  <DeleteFolder title={title} count={count} />
-                ) : (
+              {deleteFolder ? (
+                <DeleteFolder title={title} count={count} />
+              ) : (
+                <Link
+                  href={`/folder/${id}/list`}
+                  underline="none"
+                  color="ActiveBorder"
+                >
                   <Folder title={title} count={count} />
-                )}
-              </Link>
+                </Link>
+              )}
             </Grid>
           ))}
           <Grid item xs={6} sx={{ mt: 1 }}>
