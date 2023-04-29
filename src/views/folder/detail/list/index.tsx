@@ -19,6 +19,7 @@ interface FolderDetailListPageView {
   data: FolderType[]
   datailData: any[]
   tab: string
+  folderId: string
   handleChange: (event: React.SyntheticEvent, val: string) => void
 }
 
@@ -27,6 +28,7 @@ const FolderDetailListPageView = ({
   datailData,
   tab,
   handleChange,
+  folderId,
 }: FolderDetailListPageView) => {
   const [delState, setDetState] = useState<boolean>(false)
 
@@ -62,11 +64,13 @@ const FolderDetailListPageView = ({
           </Grid>
           {datailData.map(({ id, img }: any) => (
             <Grid item xs={6} sx={{ textAlign: 'center' }} key={id}>
-              {delState ? (
-                <DeleteCardComponent id={id} img={img} />
-              ) : (
-                <CardComponent id={id} img={img} />
-              )}
+              <Link href={`/folder/${folderId}/${id}`}>
+                {delState ? (
+                  <DeleteCardComponent id={id} img={img} />
+                ) : (
+                  <CardComponent id={id} img={img} />
+                )}
+              </Link>
             </Grid>
           ))}
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
