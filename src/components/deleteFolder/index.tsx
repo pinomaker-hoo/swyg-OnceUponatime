@@ -21,7 +21,7 @@ const DeleteFolder = ({ title, count }: DeleteFolderProps) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={{ textAlign: 'center' }}>
-        <img src="/folder.png" />
+        <img src="/folder.png" width="90%" />
       </Grid>
       <Grid container spacing={3} sx={{ position: 'relative' }}>
         <Grid

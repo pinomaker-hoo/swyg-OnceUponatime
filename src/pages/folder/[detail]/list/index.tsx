@@ -39,6 +39,7 @@ const FolderDetailListPage = () => {
       datailData={detailData}
       tab={tab}
       handleChange={handleChange}
+      folderId={String(router.query.detail)}
     />
   )
 }

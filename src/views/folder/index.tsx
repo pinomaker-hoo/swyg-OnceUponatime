@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 // ** Mui Imports
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Typography, Link } from '@mui/material'
 
 // ** Other View Imports
 import Folder from 'components/folder'
@@ -12,7 +12,6 @@ import DeleteFolder from 'components/deleteFolder'
 
 // ** Type Imports
 import { FolderType } from 'types'
-import Link from 'next/link'
 
 interface FolderPageViewProps {
   data: FolderType[]
@@ -30,8 +29,8 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
 
   return (
     <Grid container>
-      <Grid item xs={1} />
-      <Grid item xs={10} sx={{ mt: 10 }}>
+      <Grid item xs={0.5} />
+      <Grid item xs={11} sx={{ mt: 3 }}>
         <Grid container>
           <Grid item xs={2}>
             <img src="/back.png" />
@@ -52,8 +51,12 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
           </Grid>
           <Grid item xs={12} sx={{ mt: 5 }} />
           {data.map(({ id, title, count }: FolderType) => (
-            <Grid item xs={6} key={id}>
-              <Link href={`/folder/${id}/list`}>
+            <Grid item xs={6} key={id} sx={{ mt: 1 }}>
+              <Link
+                href={`/folder/${id}/list`}
+                underline="none"
+                color="ActiveBorder"
+              >
                 {deleteFolder ? (
                   <DeleteFolder title={title} count={count} />
                 ) : (
@@ -62,17 +65,14 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
               </Link>
             </Grid>
           ))}
-          <Grid item xs={6}>
-            <Button onClick={handleOpen} sx={{ p: 0 }}>
+          <Grid item xs={6} sx={{ mt: 1 }}>
+            <Button onClick={handleOpen} fullWidth sx={{ p: 0 }}>
               <AddFolder />
             </Button>
           </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ textAlign: 'center', mt: 30 }}>
-          <img src="/home.png" />
-        </Grid>
       </Grid>
-      <Grid item xs={1} />
+      <Grid item xs={0.5} />
       {open && <InsertModal state={open} handleClose={handleClose} />}
     </Grid>
   )
