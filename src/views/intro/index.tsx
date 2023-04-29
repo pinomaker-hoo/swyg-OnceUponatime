@@ -1,14 +1,15 @@
+// ** Next Imports
+import Link from 'next/link'
+
 // ** Mui Imports
 import { Button, Grid, Typography } from '@mui/material'
-import { textAlign } from '@mui/system'
-import Link from 'next/link'
 
 const IntroPageView = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={1} />
       <Grid item xs={10}>
-        <Grid container spacing={3} sx={{ mt: 10 }}>
+        <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ fontSize: 24 }}>
               안녕하세요 ㅇㅇㅇ님
@@ -29,7 +30,7 @@ const IntroPageView = () => {
           <Grid item xs={12} sx={{ textAlign: 'center', mt: 12 }}>
             <img src="/logo.png" style={{ opacity: 0.3 }} />
           </Grid>
-          <Grid item xs={12} sx={{ mt: 2 }}>
+          <Grid item xs={12} sx={{ mt: 15 }}>
             <Link href="/folder/list">
               <Button
                 variant="contained"
