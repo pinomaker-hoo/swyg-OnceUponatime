@@ -1,6 +1,8 @@
+// ** Next Imports
+import Link from 'next/link'
+
 // ** Mui Imports
 import { Button, Grid, TextField, Typography } from '@mui/material'
-import Link from 'next/link'
 
 const RegisterPageView = () => {
   return (
@@ -8,9 +10,11 @@ const RegisterPageView = () => {
       <Grid item xs={1} />
       <Grid item xs={10}>
         <Grid container spacing={3} sx={{ mt: 3 }}>
-          <Grid item xs={12}>
-            <img src="/back.png" />
-          </Grid>
+          <Link href="/">
+            <Grid item xs={12}>
+              <img src="/back.png" />
+            </Grid>
+          </Link>
           <Grid item xs={12} sx={{ mt: 3 }}>
             <Typography variant="h3" sx={{ fontSize: 24 }}>
               내 이름을
