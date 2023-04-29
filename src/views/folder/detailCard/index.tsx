@@ -44,7 +44,7 @@ const DetailPageView = ({
           </Grid>
           <Grid item xs={2}>
             <Button sx={{ p: 0 }}>
-              <img src="/check.png" />
+              <img src="/share.png" />
             </Button>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center', ml: 2, my: 5 }}>
