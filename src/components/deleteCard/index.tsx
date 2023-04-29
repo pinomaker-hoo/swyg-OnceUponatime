@@ -40,7 +40,7 @@ const DeleteCardComponent = ({ id, img }: CardProps) => {
 
           {open && (
             <SelectModal
-              title="앨범을 삭제하시겠습니까?"
+              title="사진을 삭제하시겠습니까?"
               state={open}
               handleClose={handleClose}
               event={() => null}
