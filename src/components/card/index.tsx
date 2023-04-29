@@ -1,5 +1,5 @@
 // ** Mui Imports
-import { Card } from '@mui/material'
+import { Card, Grid } from '@mui/material'
 
 interface CardProps {
   id: number
@@ -8,9 +8,13 @@ interface CardProps {
 
 const CardComponent = ({ id, img }: CardProps) => {
   return (
-    <Card sx={{ textAlign: 'center', width: 150, height: 150 }}>
-      <img src={img} />
-    </Card>
+    <Grid container>
+      <Grid item xs={12}>
+        <Card sx={{ textAlign: 'center', width: '160px', height: '160px' }}>
+          <img src={img} />
+        </Card>
+      </Grid>
+    </Grid>
   )
 }
 

@@ -19,33 +19,36 @@ const DeleteCardComponent = ({ id, img }: CardProps) => {
   const handleClose = () => setOpen(false)
 
   return (
-    <Card sx={{ textAlign: 'center', width: 150, height: 150 }}>
-      <Grid container>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            position: 'absolute',
-            transform: 'translate(160%, -50%)',
-          }}
-        >
-          <Button onClick={handleOpen} sx={{ p: 0 }}>
-            <img src="/delete.png" />
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <img src={img} />
-        </Grid>
+    <Grid container>
+      <Grid item xs={12}>
+        <Card sx={{ textAlign: 'center', width: '160px', height: '160px' }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              position: 'absolute',
+              transform: 'translate(200%, -50%)',
+            }}
+          >
+            <Button onClick={handleOpen} sx={{ p: 0 }}>
+              <img src="/delete.png" />
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <img src={img} />
+          </Grid>
+
+          {open && (
+            <SelectModal
+              title="앨범을 삭제하시겠습니까?"
+              state={open}
+              handleClose={handleClose}
+              event={() => null}
+            />
+          )}
+        </Card>
       </Grid>
-      {open && (
-        <SelectModal
-          title="앨범을 삭제하시겠습니까?"
-          state={open}
-          handleClose={handleClose}
-          event={() => null}
-        />
-      )}
-    </Card>
+    </Grid>
   )
 }
 

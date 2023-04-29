@@ -1,11 +1,8 @@
-// ** Next Imports
-import Link from 'next/link'
-
 // ** React Imports
 import { useState } from 'react'
 
 // ** Mui Imports
-import { Button, Grid, Typography, Tabs, Tab } from '@mui/material'
+import { Button, Grid, Typography, Tabs, Tab, Link } from '@mui/material'
 
 // ** Type Imports
 import { FolderType } from 'types'
@@ -36,8 +33,8 @@ const FolderDetailListPageView = ({
 
   return (
     <Grid container>
-      <Grid item xs={1} />
-      <Grid item xs={10} sx={{ mt: 10 }}>
+      <Grid item xs={0.5} />
+      <Grid item xs={11} sx={{ mt: 3 }}>
         <Grid container>
           <Grid item xs={2}>
             <img src="/back.png" />
@@ -63,24 +60,33 @@ const FolderDetailListPageView = ({
             </Tabs>
           </Grid>
           {datailData.map(({ id, img }: any) => (
-            <Grid item xs={6} sx={{ textAlign: 'center' }} key={id}>
-              <Link href={`/folder/${folderId}/${id}`}>
-                {delState ? (
-                  <DeleteCardComponent id={id} img={img} />
-                ) : (
+            <Grid
+              item
+              xs={6}
+              sx={{ textAlign: 'center', mt: 2, px: 1 }}
+              key={id}
+            >
+              {delState ? (
+                <DeleteCardComponent id={id} img={img} />
+              ) : (
+                <Link
+                  href={`/folder/${folderId}/${id}`}
+                  underline="none"
+                  color="ActiveBorder"
+                >
                   <CardComponent id={id} img={img} />
-                )}
-              </Link>
+                </Link>
+              )}
             </Grid>
           ))}
-          <Grid item xs={6} sx={{ textAlign: 'center' }}>
+          <Grid item xs={6} sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}>
             <Link href="/folder/write">
               <AddCardComponent />
             </Link>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={1} />
+      <Grid item xs={0.5} />
     </Grid>
   )
 }
