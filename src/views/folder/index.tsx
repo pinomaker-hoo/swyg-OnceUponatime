@@ -33,7 +33,9 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
       <Grid item xs={11} sx={{ mt: 3 }}>
         <Grid container>
           <Grid item xs={2}>
-            <img src="/back.png" />
+            <Link href="/intro">
+              <img src="/back.png" />
+            </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
             <Typography>폴더</Typography>
