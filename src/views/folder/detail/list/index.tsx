@@ -70,8 +70,9 @@ const FolderDetailListPageView = ({
             </Grid>
           ))}
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
-            {/* <Link href="/" */}
-            <AddCardComponent />
+            <Link href="/folder/write">
+              <AddCardComponent />
+            </Link>
           </Grid>
         </Grid>
       </Grid>
