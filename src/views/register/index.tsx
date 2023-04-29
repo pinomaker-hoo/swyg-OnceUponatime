@@ -1,5 +1,6 @@
 // ** Mui Imports
 import { Button, Grid, TextField, Typography } from '@mui/material'
+import Link from 'next/link'
 
 const RegisterPageView = () => {
   return (
@@ -25,14 +26,16 @@ const RegisterPageView = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: '#272A33', p: 1.5 }}
-              fullWidth
-              size="large"
-            >
-              다음
-            </Button>
+            <Link href="/intro">
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: '#272A33', p: 1.5 }}
+                fullWidth
+                size="large"
+              >
+                다음
+              </Button>
+            </Link>
           </Grid>
         </Grid>
       </Grid>
