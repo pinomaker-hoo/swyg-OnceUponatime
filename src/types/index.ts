@@ -9,3 +9,11 @@ export interface User {
   uid: string
   name: string
 }
+
+export interface SaveAlbumType {
+  folderId: string
+  title: string
+  imgUrl: string
+  text: string
+  tag: string[]
+}

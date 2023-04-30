@@ -6,7 +6,7 @@ interface CardProps {
   img: string
 }
 
-const CardComponent = ({ id, img }: CardProps) => {
+const CardComponent = ({ img }: CardProps) => {
   return (
     <Grid container>
       <Grid item xs={12}>

@@ -11,13 +11,17 @@ import { FolderType } from 'types'
 import DeleteCardComponent from 'components/deleteCard'
 import CardComponent from 'components/card'
 import AddCardComponent from 'components/addCard'
+import SelectModal from 'components/modal/selectModal'
 
 interface FolderDetailListPageView {
   data: FolderType[]
   datailData: any[]
   tab: string
   folderId: string
+  open: boolean
   handleChange: (event: React.SyntheticEvent, val: string) => void
+  handleOpen: (id: string) => void
+  handleClose: () => void
 }
 
 const FolderDetailListPageView = ({
@@ -26,6 +30,9 @@ const FolderDetailListPageView = ({
   tab,
   handleChange,
   folderId,
+  open,
+  handleOpen,
+  handleClose,
 }: FolderDetailListPageView) => {
   const [delState, setDetState] = useState<boolean>(false)
 
@@ -56,12 +63,12 @@ const FolderDetailListPageView = ({
               aria-label="basic tabs example"
             >
               <Tab label="전체보기" value="0" />
-              {data.map(({ title, id }: FolderType) => (
-                <Tab label={title} value={String(id)} key={id} />
+              {data.map(({ name, id }: FolderType) => (
+                <Tab label={name} value={String(id)} key={id} />
               ))}
             </Tabs>
           </Grid>
-          {datailData.map(({ id, img }: any) => (
+          {datailData.map(({ id, imgUrl }: any) => (
             <Grid
               item
               xs={6}
@@ -69,26 +76,38 @@ const FolderDetailListPageView = ({
               key={id}
             >
               {delState ? (
-                <DeleteCardComponent id={id} img={img} />
+                <DeleteCardComponent
+                  id={id}
+                  img={imgUrl}
+                  handleOpen={handleOpen}
+                />
               ) : (
                 <Link
                   href={`/folder/${folderId}/${id}`}
                   underline="none"
                   color="ActiveBorder"
                 >
-                  <CardComponent id={id} img={img} />
+                  <CardComponent id={id} img={imgUrl} />
                 </Link>
               )}
             </Grid>
           ))}
           <Grid item xs={6} sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}>
-            <Link href="/folder/write">
+            <Link href={`/folder/write/${folderId}`}>
               <AddCardComponent />
             </Link>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={0.5} />
+      {open && (
+        <SelectModal
+          title="사진을 삭제하시겠습니까?"
+          state={open}
+          handleClose={handleClose}
+          event={() => null}
+        />
+      )}
     </Grid>
   )
 }
