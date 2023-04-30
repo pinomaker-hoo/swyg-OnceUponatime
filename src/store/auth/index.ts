@@ -1,14 +1,13 @@
 // ** Redux Imports
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from 'store'
 
 interface AuthType {
-  uid: string
-  name: string
+  user: { uid: string; name: string }
 }
 
 const initialState: AuthType = {
-  uid: '',
-  name: '',
+  user: { uid: '', name: '' },
 }
 
 export const authSlice = createSlice({
@@ -16,8 +15,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     updateUser: (state, { payload }) => {
+      console.log('payload : ', payload)
       state = {
-        ...state,
+        ...state.user,
         ...payload,
       }
     },
@@ -27,6 +27,8 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {},
 })
+
+export const getUserUid = (state: RootState) => state.auth.user
 
 export default authSlice.reducer
 

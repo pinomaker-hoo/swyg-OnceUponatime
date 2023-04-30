@@ -7,22 +7,26 @@ import { Card, Grid, Typography } from '@mui/material'
 // ** Redux Imports
 import { getUser, loginUser, saveUser } from 'services'
 import { useDispatch } from 'react-redux'
-import { updateUser } from 'store/auth'
+import { getUserUid, updateUser } from 'store/auth'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
   const dispatch = useDispatch()
   const router = useRouter()
+
+  const a = useSelector(getUserUid)
 
   const handleLogin = async () => {
     try {
       const uid = await loginUser()
       const data = await getUser(uid)
       if (data) {
-        dispatch(updateUser(data))
+        dispatch(updateUser({ name: data.name, uid }))
         router.push('/intro')
 
         return
       }
+
       await saveUser(uid)
       dispatch(updateUser({ uid }))
 
