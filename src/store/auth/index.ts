@@ -1,15 +1,33 @@
 // ** Redux Imports
 import { createSlice } from '@reduxjs/toolkit'
 
-interface AuthType {}
+interface AuthType {
+  uid: string
+  name: string
+}
 
-const initialState: AuthType = {}
+const initialState: AuthType = {
+  uid: '',
+  name: '',
+}
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    updateUser: (state, { payload }) => {
+      state = {
+        ...state,
+        ...payload,
+      }
+    },
+    userLogout: (state) => {
+      state = { ...initialState }
+    },
+  },
   extraReducers: (builder) => {},
 })
 
 export default authSlice.reducer
+
+export const { updateUser, userLogout } = authSlice.actions
