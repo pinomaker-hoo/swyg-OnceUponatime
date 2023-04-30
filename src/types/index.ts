@@ -3,3 +3,8 @@ export interface FolderType {
   title: string
   count: number
 }
+
+export interface User {
+  uid: string
+  name: string
+}

@@ -3,8 +3,15 @@ import Link from 'next/link'
 
 // ** Mui Imports
 import { Button, Grid, TextField, Typography } from '@mui/material'
+import { User } from 'types'
 
-const RegisterPageView = () => {
+interface Props {
+  user: User
+  setUser: any
+  modifyContent: () => void
+}
+
+const RegisterPageView = ({ user, setUser, modifyContent }: Props) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={1} />
@@ -26,20 +33,22 @@ const RegisterPageView = () => {
               label="닉네임"
               variant="outlined"
               placeholder="닉네임을 입력해주세요."
+              value={user.name}
+              onChange={setUser}
+              name="name"
               fullWidth
             />
           </Grid>
           <Grid item xs={12}>
-            <Link href="/intro">
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: '#272A33', p: 1.5 }}
-                fullWidth
-                size="large"
-              >
-                다음
-              </Button>
-            </Link>
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: '#272A33', p: 1.5 }}
+              fullWidth
+              size="large"
+              onClick={modifyContent}
+            >
+              다음
+            </Button>
           </Grid>
         </Grid>
       </Grid>
