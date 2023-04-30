@@ -9,24 +9,36 @@ import Folder from 'components/folder'
 import InsertModal from 'components/modal/insertModal'
 import AddFolder from 'components/addFolder'
 import DeleteFolder from 'components/deleteFolder'
+import SelectModal from 'components/modal/selectModal'
 
 // ** Type Imports
 import { FolderType } from 'types'
 
 interface FolderPageViewProps {
   data: FolderType[]
+  openDelete: boolean
   handleRefetch: () => void
+  handleDeleteOpen: (id: string) => void
+  handleDeleteClose: () => void
+  delContent: () => void
 }
 
-const FolderPageView = ({ data, handleRefetch }: FolderPageViewProps) => {
+const FolderPageView = ({
+  data,
+  handleRefetch,
+  handleDeleteOpen,
+  handleDeleteClose,
+  openDelete,
+  delContent,
+}: FolderPageViewProps) => {
   const [open, setOpen] = useState<boolean>(false)
-  const [deleteFolder, setDeleteFolder] = useState<boolean>(false)
+  const [deleteState, setDeleteState] = useState<boolean>(false)
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const handleDelete = () => setDeleteFolder(true)
-  const handleDeleteClose = () => setDeleteFolder(false)
+  const handleDelete = () => setDeleteState(true)
+  const handleDeleteCancel = () => setDeleteState(false)
 
   return (
     <Grid container>
@@ -42,8 +54,11 @@ const FolderPageView = ({ data, handleRefetch }: FolderPageViewProps) => {
             <Typography>폴더</Typography>
           </Grid>
           <Grid item xs={2}>
-            {deleteFolder ? (
-              <Button onClick={handleDeleteClose} sx={{ p: 0, color: 'black' }}>
+            {deleteState ? (
+              <Button
+                onClick={handleDeleteCancel}
+                sx={{ p: 0, color: 'black' }}
+              >
                 <Typography>완료</Typography>
               </Button>
             ) : (
@@ -55,8 +70,13 @@ const FolderPageView = ({ data, handleRefetch }: FolderPageViewProps) => {
           <Grid item xs={12} sx={{ mt: 5 }} />
           {data.map(({ id, name, count }: FolderType) => (
             <Grid item xs={6} key={id} sx={{ mt: 1 }}>
-              {deleteFolder ? (
-                <DeleteFolder title={name} count={count} />
+              {deleteState ? (
+                <DeleteFolder
+                  title={name}
+                  count={count}
+                  id={id}
+                  event={handleDeleteOpen}
+                />
               ) : (
                 <Link
                   href={`/folder/${id}/list`}
@@ -81,6 +101,14 @@ const FolderPageView = ({ data, handleRefetch }: FolderPageViewProps) => {
           state={open}
           handleClose={handleClose}
           handleRefetch={handleRefetch}
+        />
+      )}
+      {openDelete && (
+        <SelectModal
+          title="앨범을 삭제하시겠습니까?"
+          state={openDelete}
+          handleClose={handleDeleteClose}
+          event={delContent}
         />
       )}
     </Grid>

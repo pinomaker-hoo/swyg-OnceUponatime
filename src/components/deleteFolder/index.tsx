@@ -1,23 +1,14 @@
-// ** React Imports
-import { useState } from 'react'
-
 // ** Mui Import
 import { Button, Grid, Typography } from '@mui/material'
 
-// ** Other View Imports
-import SelectModal from 'components/modal/selectModal'
-
-interface DeleteFolderProps {
+interface Props {
   title: string
   count: number
+  id: string
+  event: (id: string) => void
 }
 
-const DeleteFolder = ({ title, count }: DeleteFolderProps) => {
-  const [open, setOpen] = useState<boolean>(false)
-
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-
+const DeleteFolder = ({ title, count, event, id }: Props) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={{ textAlign: 'center' }}>
@@ -34,7 +25,7 @@ const DeleteFolder = ({ title, count }: DeleteFolderProps) => {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Button onClick={handleOpen} sx={{ p: 0 }}>
+          <Button onClick={() => event(id)} sx={{ p: 0 }}>
             <img src="/delete.png" />
           </Button>
         </Grid>
@@ -67,14 +58,6 @@ const DeleteFolder = ({ title, count }: DeleteFolderProps) => {
           </Typography>
         </Grid>
       </Grid>
-      {open && (
-        <SelectModal
-          title="앨범을 삭제하시겠습니까?"
-          state={open}
-          handleClose={handleClose}
-          event={() => null}
-        />
-      )}
     </Grid>
   )
 }

@@ -7,6 +7,7 @@ import {
   query,
   where,
   getDocs,
+  deleteDoc,
 } from 'firebase/firestore'
 
 const folderApi = {
@@ -27,6 +28,9 @@ const folderApi = {
       count: 0,
     }))
   },
+  deleteFolder: async (id: string) => {
+    await deleteDoc(doc(db, 'folder', id))
+  },
 }
 
-export const { saveFolder, getFolderList } = folderApi
+export const { saveFolder, getFolderList, deleteFolder } = folderApi
