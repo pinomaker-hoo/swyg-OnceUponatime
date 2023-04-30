@@ -22,6 +22,7 @@ interface FolderDetailListPageView {
   handleChange: (event: React.SyntheticEvent, val: string) => void
   handleOpen: (id: string) => void
   handleClose: () => void
+  delContet: () => void
 }
 
 const FolderDetailListPageView = ({
@@ -33,6 +34,7 @@ const FolderDetailListPageView = ({
   open,
   handleOpen,
   handleClose,
+  delContet,
 }: FolderDetailListPageView) => {
   const [delState, setDetState] = useState<boolean>(false)
 
@@ -105,7 +107,7 @@ const FolderDetailListPageView = ({
           title="사진을 삭제하시겠습니까?"
           state={open}
           handleClose={handleClose}
-          event={() => null}
+          event={delContet}
         />
       )}
     </Grid>

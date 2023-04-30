@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getFolderList } from 'services'
-import { getAlbumAll, getAlbumByFolderId } from 'services/album'
+import { deleteAlbum, getAlbumAll, getAlbumByFolderId } from 'services/album'
 import { getUserUid } from 'store/auth'
 import { FolderType } from 'types'
 
@@ -37,6 +37,16 @@ const FolderDetailListPage = () => {
   }
 
   const handleRefetch = () => setReRenderSwitch(true)
+
+  const delContet = async () => {
+    try {
+      await deleteAlbum(deleteId)
+      handleRefetch()
+      handleClose()
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   useEffect(() => {
     if (router.query.detail) {
@@ -78,6 +88,7 @@ const FolderDetailListPage = () => {
       open={open}
       handleClose={handleClose}
       handleOpen={handleOpen}
+      delContet={delContet}
     />
   )
 }
