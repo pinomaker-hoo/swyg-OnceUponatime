@@ -15,9 +15,10 @@ import { FolderType } from 'types'
 
 interface FolderPageViewProps {
   data: FolderType[]
+  handleRefetch: () => void
 }
 
-const FolderPageView = ({ data }: FolderPageViewProps) => {
+const FolderPageView = ({ data, handleRefetch }: FolderPageViewProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const [deleteFolder, setDeleteFolder] = useState<boolean>(false)
 
@@ -52,17 +53,17 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
             )}
           </Grid>
           <Grid item xs={12} sx={{ mt: 5 }} />
-          {data.map(({ id, title, count }: FolderType) => (
+          {data.map(({ id, name, count }: FolderType) => (
             <Grid item xs={6} key={id} sx={{ mt: 1 }}>
               {deleteFolder ? (
-                <DeleteFolder title={title} count={count} />
+                <DeleteFolder title={name} count={count} />
               ) : (
                 <Link
                   href={`/folder/${id}/list`}
                   underline="none"
                   color="ActiveBorder"
                 >
-                  <Folder title={title} count={count} />
+                  <Folder title={name} count={count} />
                 </Link>
               )}
             </Grid>
@@ -75,7 +76,13 @@ const FolderPageView = ({ data }: FolderPageViewProps) => {
         </Grid>
       </Grid>
       <Grid item xs={0.5} />
-      {open && <InsertModal state={open} handleClose={handleClose} />}
+      {open && (
+        <InsertModal
+          state={open}
+          handleClose={handleClose}
+          handleRefetch={handleRefetch}
+        />
+      )}
     </Grid>
   )
 }

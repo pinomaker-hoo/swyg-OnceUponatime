@@ -1,6 +1,13 @@
 // ** Firebase Imports
 import { db } from 'config/firebaseConfig'
-import { doc, setDoc, collection } from 'firebase/firestore'
+import {
+  doc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from 'firebase/firestore'
 
 const folderApi = {
   saveFolder: async (uid: string, name: string) => {
@@ -9,6 +16,17 @@ const folderApi = {
       uid,
     })
   },
+  getFolderList: async (uid: string) => {
+    const querySnapshot = await getDocs(
+      query(collection(db, 'folder'), where('uid', '==', uid))
+    )
+    return querySnapshot.docs.map((item) => ({
+      name: String(item.data().name),
+      uid: String(item.data().uid),
+      id: item.id,
+      count: 0,
+    }))
+  },
 }
 
-export const { saveFolder } = folderApi
+export const { saveFolder, getFolderList } = folderApi

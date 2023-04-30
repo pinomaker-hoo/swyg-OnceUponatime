@@ -1,6 +1,7 @@
 export interface FolderType {
-  id: number
-  title: string
+  id: string
+  uid: string
+  name: string
   count: number
 }
 
