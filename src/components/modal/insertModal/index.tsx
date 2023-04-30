@@ -3,19 +3,34 @@ import { useState } from 'react'
 
 // ** Other View Imports
 import InsertModalView from './insertModal'
+import { useSelector } from 'react-redux'
+import { getUserUid } from 'store/auth'
+import { saveFolder } from 'services'
 
 interface InsertModalProps {
   state: boolean
   handleClose: () => void
+  handleRefetch: () => void
 }
 
-const InsertModal = ({ state, handleClose }: InsertModalProps) => {
+const InsertModal = ({
+  state,
+  handleClose,
+  handleRefetch,
+}: InsertModalProps) => {
   const [name, setName] = useState<string>('')
+
+  const uid = useSelector(getUserUid)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setName(e.target.value)
 
-  const regContent = () => {}
+  const regContent = async () => {
+    await saveFolder(uid, name)
+    handleRefetch()
+    handleClose()
+  }
+
   return (
     <InsertModalView
       state={state}
