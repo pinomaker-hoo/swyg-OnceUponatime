@@ -27,7 +27,8 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {},
 })
 
-export const getUserUid = (state: RootState) => state.auth.user
+export const getUserUid = (state: RootState) => state.auth.user.uid
+export const getUserName = (state: RootState) => state.auth.user.name
 
 export default authSlice.reducer
 

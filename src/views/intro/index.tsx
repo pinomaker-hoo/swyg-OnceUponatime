@@ -4,7 +4,11 @@ import Link from 'next/link'
 // ** Mui Imports
 import { Button, Grid, Typography } from '@mui/material'
 
-const IntroPageView = () => {
+interface Props {
+  name: string
+}
+
+const IntroPageView = ({ name }: Props) => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={1} />
@@ -12,12 +16,13 @@ const IntroPageView = () => {
         <Grid container spacing={3} sx={{ mt: 3 }}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ fontSize: 24 }}>
-              안녕하세요 ㅇㅇㅇ님
+              안녕하세요 {name}님
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ fontSize: 20 }}>
-              Once Upon a time은 ㅋㅋ 의<br /> 추억을 저장해주는 서비스 입니다.
+              Once Upon a time은 {name} 의<br /> 추억을 저장해주는 서비스
+              입니다.
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
