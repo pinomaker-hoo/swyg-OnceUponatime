@@ -94,11 +94,13 @@ const FolderDetailListPageView = ({
               )}
             </Grid>
           ))}
-          <Grid item xs={6} sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}>
-            <Link href={`/folder/write/${folderId}`}>
-              <AddCardComponent />
-            </Link>
-          </Grid>
+          {tab !== '0' && (
+            <Grid item xs={6} sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}>
+              <Link href={`/folder/write/${folderId}`}>
+                <AddCardComponent />
+              </Link>
+            </Grid>
+          )}
         </Grid>
       </Grid>
       <Grid item xs={0.5} />
