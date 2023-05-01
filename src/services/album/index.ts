@@ -9,6 +9,7 @@ import {
   where,
   deleteDoc,
   getDoc,
+  updateDoc,
 } from 'firebase/firestore'
 
 // ** Type Imports
@@ -43,6 +44,15 @@ const albumApi = {
     const docSnap = await getDoc(doc(db, 'album', id))
     return docSnap.data()
   },
+  updateAlbum: async (album: SaveAlbumType, id: string) => {
+    try {
+      await updateDoc(doc(db, 'album', id), {
+        ...album,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  },
 }
 
 export const {
@@ -51,4 +61,5 @@ export const {
   getAlbumAll,
   deleteAlbum,
   getAlbum,
+  updateAlbum,
 } = albumApi
