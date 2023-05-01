@@ -8,6 +8,7 @@ import {
   where,
   getDocs,
   deleteDoc,
+  getCountFromServer,
 } from 'firebase/firestore'
 
 const folderApi = {
@@ -31,6 +32,13 @@ const folderApi = {
   deleteFolder: async (id: string) => {
     await deleteDoc(doc(db, 'folder', id))
   },
+  getAllCount: async (uid: string) => {
+    const count = await getCountFromServer(
+      query(collection(db, 'album'), where('uid', '==', uid))
+    )
+    return count.data().count
+  },
 }
 
-export const { saveFolder, getFolderList, deleteFolder } = folderApi
+export const { saveFolder, getFolderList, deleteFolder, getAllCount } =
+  folderApi

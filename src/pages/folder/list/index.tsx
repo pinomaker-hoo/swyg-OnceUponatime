@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 // ** Redux Imports
-import { deleteFolder, getFolderList } from 'services'
+import { deleteFolder, getAllCount, getFolderList } from 'services'
 import { getUserUid } from 'store/auth'
 
 // ** Type Imports
@@ -17,6 +17,7 @@ const FolderPage = () => {
   const [reRenderSwitch, setReRenderSwitch] = useState<boolean>(false)
   const [folderId, setFolderId] = useState<string>('')
   const [openDelete, setOpenDelete] = useState<boolean>(false)
+  const [count, setCount] = useState<number>(0)
 
   const handleDeleteOpen = (id: string) => {
     setFolderId(id)
@@ -45,6 +46,9 @@ const FolderPage = () => {
     getFolderList('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
       setFolderList(res)
     })
+    getAllCount('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
+      setCount(res)
+    })
   }, [reRenderSwitch])
 
   return (
@@ -55,6 +59,7 @@ const FolderPage = () => {
       handleDeleteOpen={handleDeleteOpen}
       handleDeleteClose={handleDeleteClose}
       delContent={delContent}
+      count={count}
     />
   )
 }

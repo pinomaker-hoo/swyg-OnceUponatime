@@ -17,6 +17,7 @@ import { FolderType } from 'types'
 interface FolderPageViewProps {
   data: FolderType[]
   openDelete: boolean
+  count: number
   handleRefetch: () => void
   handleDeleteOpen: (id: string) => void
   handleDeleteClose: () => void
@@ -30,6 +31,7 @@ const FolderPageView = ({
   handleDeleteClose,
   openDelete,
   delContent,
+  count,
 }: FolderPageViewProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const [deleteState, setDeleteState] = useState<boolean>(false)
@@ -70,7 +72,7 @@ const FolderPageView = ({
           <Grid item xs={12} sx={{ mt: 5 }} />
           <Grid item xs={6} sx={{ mt: 1 }}>
             <Link href={`/folder/0/list`} underline="none" color="ActiveBorder">
-              <Folder title="전체보기" count={0} />
+              <Folder title="전체보기" count={count} />
             </Link>
           </Grid>
           {data.map(({ id, name, count }: FolderType) => (
