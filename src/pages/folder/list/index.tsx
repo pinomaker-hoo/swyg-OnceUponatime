@@ -43,10 +43,10 @@ const FolderPage = () => {
     if (reRenderSwitch) {
       setReRenderSwitch(false)
     }
-    getFolderList('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
+    getFolderList(uid).then((res) => {
       setFolderList(res)
     })
-    getAllCount('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
+    getAllCount(uid).then((res) => {
       setCount(res)
     })
   }, [reRenderSwitch])

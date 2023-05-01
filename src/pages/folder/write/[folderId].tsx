@@ -58,7 +58,7 @@ const CardWritePage = () => {
         ...album,
         imgUrl,
         folderId: router.query.folderId,
-        uid: 'AtndqUfgLIW5C6xjBA7npEnA0472',
+        uid,
       })
     } catch (err) {
       alert('에러가 발생하였습니다.')

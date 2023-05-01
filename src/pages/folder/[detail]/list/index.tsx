@@ -60,7 +60,7 @@ const FolderDetailListPage = () => {
     }
 
     if (tab === '0') {
-      getAlbumAll('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
+      getAlbumAll(uid).then((res) => {
         setDatailData(res)
       })
 
@@ -73,7 +73,7 @@ const FolderDetailListPage = () => {
   }, [tab, reRenderSwitch])
 
   useEffect(() => {
-    getFolderList('AtndqUfgLIW5C6xjBA7npEnA0472').then((res) => {
+    getFolderList(uid).then((res) => {
       setFolderList(res)
     })
   }, [])
