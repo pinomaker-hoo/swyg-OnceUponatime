@@ -14,6 +14,7 @@ import { store } from 'store'
 
 // ** Other Imports
 import { isMobile } from 'react-device-detect'
+import ProtectRoute from 'hooks/withAuth'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -23,7 +24,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <CssBaseline />
         <div className={isMobile ? '' : 'container'}>
           <div className={isMobile ? '' : 'content'}>
-            <Component {...pageProps} />
+            <ProtectRoute>
+              <Component {...pageProps} />
+            </ProtectRoute>
           </div>
         </div>
       </ThemeProvider>
