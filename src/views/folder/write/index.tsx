@@ -109,7 +109,6 @@ const CardWritePageView = ({
             </Grid>
           </Grid>
           <Grid item xs={1} />
-
           <Grid item xs={12} sx={{ textAlign: 'center', my: 1 }}>
             <TextField
               variant="standard"

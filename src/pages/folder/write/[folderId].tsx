@@ -74,6 +74,7 @@ const CardWritePage = () => {
         folderId: router.query.folderId,
         uid,
       })
+      router.push('/folder/0/list')
     } catch (err) {
       alert('에러가 발생하였습니다.')
     }
