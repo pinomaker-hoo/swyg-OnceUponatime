@@ -28,7 +28,13 @@ const DeleteCardComponent = ({ id, img, handleOpen }: CardProps) => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <img src={img} />
+            <img
+              src={img}
+              style={{
+                width: '100%',
+                height: '100%',
+              }}
+            />
           </Grid>
         </Card>
       </Grid>
