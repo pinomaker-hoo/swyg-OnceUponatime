@@ -59,7 +59,14 @@ const DetailPageView = ({
                 backgroundColor: '#f2f2f2',
               }}
             >
-              <img src={img} width="100%" />
+              <img
+                src={img}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '10px',
+                }}
+              />
             </Paper>
           </Grid>
           {tag.map((item: string, index: number) => (

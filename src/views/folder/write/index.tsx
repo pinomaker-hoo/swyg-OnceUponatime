@@ -60,7 +60,11 @@ const CardWritePageView = ({
                 {previewUrl ? (
                   <img
                     src={previewUrl}
-                    style={{ width: '100%', height: '100%' }}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '10px',
+                    }}
                   />
                 ) : (
                   <img src="/plus.png" />
