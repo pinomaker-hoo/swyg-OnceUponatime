@@ -13,7 +13,7 @@ const IntroPageView = ({ name }: Props) => {
     <Grid container spacing={3}>
       <Grid item xs={1} />
       <Grid item xs={10}>
-        <Grid container spacing={3} sx={{ mt: 3 }}>
+        <Grid container spacing={3} sx={{ mt: 20 }}>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ fontSize: 24 }}>
               안녕하세요 {name}님
@@ -32,10 +32,19 @@ const IntroPageView = ({ name }: Props) => {
               저장해보세요!
             </Typography>
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center', mt: 12 }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              textAlign: 'center',
+              mt: 12,
+              position: 'absolute',
+              transform: 'translate(0,150%)',
+            }}
+          >
             <img src="/logo.png" style={{ opacity: 0.3 }} />
           </Grid>
-          <Grid item xs={12} sx={{ mt: 15 }}>
+          <Grid item xs={12} sx={{ mt: 35 }}>
             <Link href="/folder/list">
               <Button
                 variant="contained"

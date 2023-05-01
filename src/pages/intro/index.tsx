@@ -1,10 +1,21 @@
+// ** React Imports
+import { useEffect, useState } from 'react'
+
 // ** Other View Imports
-import { useSelector } from 'react-redux'
-import { getUserName } from 'store/auth'
 import IntroPageView from 'views/intro'
 
+// ** Redux Imports
+import { useSelector } from 'react-redux'
+import { getUserName } from 'store/auth'
+
 const IntroPage = () => {
-  const name = useSelector(getUserName)
+  const [name, setName] = useState<string>('')
+
+  const userName = useSelector(getUserName)
+
+  useEffect(() => {
+    setName(userName)
+  }, [userName])
 
   return <IntroPageView name={name} />
 }
