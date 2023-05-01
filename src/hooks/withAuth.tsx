@@ -14,7 +14,7 @@ const ProtectRoute = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (userUid === '') {
-      route.push('/login')
+      route.push('/')
     }
   }, [userUid])
 
