@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 // ** Mui Imports
-import { Grid, Typography, Button, Paper, TextField } from '@mui/material'
+import { Grid, Typography, Button, Paper, TextField, Chip } from '@mui/material'
 import { SaveAlbumType } from 'types'
 
 interface Props {
@@ -14,6 +14,9 @@ interface Props {
   previewUrl: string | null
   album: SaveAlbumType
   setAlbum: any
+  handleOnKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  handleChangeTag: (e: React.ChangeEvent<HTMLInputElement>) => void
+  tag: string
 }
 
 const CardWritePageView = ({
@@ -22,6 +25,9 @@ const CardWritePageView = ({
   previewUrl,
   album,
   setAlbum,
+  handleOnKeyPress,
+  handleChangeTag,
+  tag,
 }: Props) => {
   const ref = useRef<HTMLInputElement>()
 
@@ -89,8 +95,30 @@ const CardWritePageView = ({
               onChange={setAlbum}
             />
           </Grid>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
+            <Grid container>
+              {album.tag.map((item) => (
+                <Grid item xs={4} sx={{ textAlign: 'center', mt: 1 }}>
+                  <Chip
+                    label={item}
+                    sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+          <Grid item xs={1} />
+
           <Grid item xs={12} sx={{ textAlign: 'center', my: 1 }}>
-            <TextField variant="standard" sx={{ width: '80%' }} label="태그" />
+            <TextField
+              variant="standard"
+              sx={{ width: '80%' }}
+              label="태그"
+              value={tag}
+              onChange={handleChangeTag}
+              onKeyDown={handleOnKeyPress}
+            />
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <TextField
