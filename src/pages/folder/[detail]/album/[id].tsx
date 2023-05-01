@@ -12,6 +12,7 @@ import DetailPageView from 'views/folder/detailCard'
 
 const DetailPage = () => {
   const router = useRouter()
+  const [copyLink, setCopyLink] = useState<string>('')
   const [album, setAlbum] = useState<any>({
     folderId: '',
     imgUrl: '',
@@ -26,6 +27,10 @@ const DetailPage = () => {
       getAlbum(String(router.query.id)).then((res) => {
         setAlbum(res)
       })
+
+      setCopyLink(
+        `http://localhost:3002/folder/guest/${String(router.query.id)}`
+      )
     }
   }, [router.query.id])
 
@@ -37,6 +42,7 @@ const DetailPage = () => {
       tag={album.tag}
       id={String(router.query.id)}
       tabId={String(router.query.detail)}
+      copyLink={copyLink}
     />
   )
 }

@@ -7,6 +7,9 @@ import Link from 'next/link'
 // ** Mui Imports
 import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
 
+// ** Other Imports
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+
 interface DetailPageViewProps {
   title: string
   tag: string[]
@@ -14,6 +17,7 @@ interface DetailPageViewProps {
   img: string
   id: string
   tabId: string
+  copyLink: string
 }
 
 const DetailPageView = ({
@@ -23,6 +27,7 @@ const DetailPageView = ({
   img,
   id,
   tabId,
+  copyLink,
 }: DetailPageViewProps) => {
   const [hide, setHide] = useState<boolean>(true)
 
@@ -43,9 +48,12 @@ const DetailPageView = ({
             <Typography>{title}</Typography>
           </Grid>
           <Grid item xs={2}>
-            <Button sx={{ p: 0 }}>
+            <CopyToClipboard
+              text={copyLink}
+              onCopy={() => alert('클립보드에 복사되었습니다.')}
+            >
               <img src="/share.png" />
-            </Button>
+            </CopyToClipboard>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center', ml: 2, my: 5 }}>
             <Paper
@@ -69,40 +77,48 @@ const DetailPageView = ({
               />
             </Paper>
           </Grid>
-          {tag.map((item: string, index: number) => (
-            <Grid item xs={4} key={index}>
-              <Chip label={item} />
-            </Grid>
-          ))}
-          {text.length > 30 ? (
-            <>
-              <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
-                {hide ? (
-                  <Typography>{text.slice(0, 30)}...</Typography>
-                ) : (
-                  <Typography sx={{ width: 30 }}>{text}</Typography>
-                )}
-              </Grid>
-              {hide ? (
-                <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                  <Button sx={{ p: 0 }}>
-                    <img src="/down.png" onClick={handleShow} />
-                  </Button>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
+            <Grid container>
+              {tag.map((item: string, index: number) => (
+                <Grid item xs={4} key={index}>
+                  <Chip
+                    label={item}
+                    sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
+                  />
                 </Grid>
+              ))}
+              {text.length > 30 ? (
+                <>
+                  <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
+                    {hide ? (
+                      <Typography>{text.slice(0, 30)}...</Typography>
+                    ) : (
+                      <Typography sx={{ width: 30 }}>{text}</Typography>
+                    )}
+                  </Grid>
+                  {hide ? (
+                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                      <Button sx={{ p: 0 }}>
+                        <img src="/down.png" onClick={handleShow} />
+                      </Button>
+                    </Grid>
+                  ) : (
+                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                      <Button sx={{ p: 0 }}>
+                        <img src="/top.png" onClick={handleHide} />
+                      </Button>
+                    </Grid>
+                  )}
+                </>
               ) : (
-                <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                  <Button sx={{ p: 0 }}>
-                    <img src="/top.png" onClick={handleHide} />
-                  </Button>
+                <Grid item xs={12} sx={{ my: 5 }}>
+                  <Typography>{text}</Typography>
                 </Grid>
               )}
-            </>
-          ) : (
-            <Grid item xs={12} sx={{ my: 5 }}>
-              <Typography>{text}</Typography>
             </Grid>
-          )}
-
+          </Grid>
+          <Grid item xs={1} />
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
             <Link href={`/folder/edit/${id}`}>
               <img src="/edit.png" />
