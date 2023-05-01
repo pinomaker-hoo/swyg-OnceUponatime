@@ -39,7 +39,7 @@ const DeleteFolder = ({ title, count, event, id }: Props) => {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Typography variant="h6" sx={{ fontSize: 19 }}>
+          <Typography variant="h6" sx={{ fontSize: 19, color: '#777777' }}>
             {title}
           </Typography>
         </Grid>
@@ -53,7 +53,7 @@ const DeleteFolder = ({ title, count, event, id }: Props) => {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Typography variant="body1" sx={{ fontSize: 15 }}>
+          <Typography variant="body1" sx={{ fontSize: 15, color: '#777777' }}>
             {count}
           </Typography>
         </Grid>
