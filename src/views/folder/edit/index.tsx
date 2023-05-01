@@ -30,7 +30,7 @@ const CardEditPageView = ({
   handleChangeTag,
   tag,
 }: Props) => {
-  const ref = useRef<HTMLInputElement>()
+  const ref = useRef<any>()
 
   const onClickImg = () => {
     ref.current?.click()

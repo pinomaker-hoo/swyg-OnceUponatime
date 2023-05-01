@@ -56,7 +56,7 @@ const CardWritePage = () => {
     setPreviewUrl(null)
   }
 
-  const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleOnKeyPress = (e: any) => {
     if (e.key === 'Enter') {
       const tag = [...album.tag, e.target.value]
       setData((cur: any) => ({ ...cur, tag }))
