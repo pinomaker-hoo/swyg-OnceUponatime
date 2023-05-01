@@ -28,7 +28,7 @@ const RegisterPage = () => {
   const uid = useSelector(getUserUid)
 
   const modifyContent = async () => {
-    if (user.name) {
+    if (user.name === '') {
       alert('데이터를 입력해주세요.')
 
       return
