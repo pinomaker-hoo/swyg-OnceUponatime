@@ -12,7 +12,7 @@ interface DetailPageViewProps {
   tag: string[]
   text: string
   img: string
-  id: number
+  id: string
   tabId: string
 }
 

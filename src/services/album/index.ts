@@ -8,6 +8,7 @@ import {
   query,
   where,
   deleteDoc,
+  getDoc,
 } from 'firebase/firestore'
 
 // ** Type Imports
@@ -38,7 +39,16 @@ const albumApi = {
   deleteAlbum: async (id: string) => {
     await deleteDoc(doc(db, 'album', id))
   },
+  getAlbum: async (id: string) => {
+    const docSnap = await getDoc(doc(db, 'album', id))
+    return docSnap.data()
+  },
 }
 
-export const { saveAlbum, getAlbumByFolderId, getAlbumAll, deleteAlbum } =
-  albumApi
+export const {
+  saveAlbum,
+  getAlbumByFolderId,
+  getAlbumAll,
+  deleteAlbum,
+  getAlbum,
+} = albumApi

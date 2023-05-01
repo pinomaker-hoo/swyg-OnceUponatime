@@ -85,7 +85,7 @@ const FolderDetailListPageView = ({
                 />
               ) : (
                 <Link
-                  href={`/folder/${folderId}/${id}`}
+                  href={`/folder/${folderId}/album/${id}`}
                   underline="none"
                   color="ActiveBorder"
                 >
