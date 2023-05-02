@@ -6,6 +6,8 @@ import { useRef } from 'react'
 
 // ** Mui Imports
 import { Grid, Typography, Button, Paper, TextField, Chip } from '@mui/material'
+
+// ** Type Imports
 import { SaveAlbumType } from 'types'
 
 interface Props {
@@ -98,8 +100,13 @@ const CardWritePageView = ({
           <Grid item xs={1} />
           <Grid item xs={10}>
             <Grid container>
-              {album.tag.map((item) => (
-                <Grid item xs={4} sx={{ textAlign: 'center', mt: 1 }}>
+              {album.tag.map((item: string, index: number) => (
+                <Grid
+                  item
+                  xs={4}
+                  sx={{ textAlign: 'center', mt: 1 }}
+                  key={index}
+                >
                   <Chip
                     label={item}
                     sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
