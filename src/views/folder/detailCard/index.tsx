@@ -5,7 +5,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 // ** Mui Imports
-import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
+import { Grid, Typography, Button, Chip } from '@mui/material'
 
 // ** Other Imports
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -47,7 +47,7 @@ const DetailPageView = ({
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
             <Typography>{title}</Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={2} sx={{ textAlign: 'right' }}>
             <CopyToClipboard
               text={copyLink}
               onCopy={() => alert('클립보드에 복사되었습니다.')}
@@ -55,33 +55,25 @@ const DetailPageView = ({
               <img src="/share.png" />
             </CopyToClipboard>
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center', ml: 2, my: 5 }}>
-            <Paper
-              sx={{
-                boxShadow: 'none',
-                border: 1,
-                borderRadius: 2,
-                width: 300,
-                height: 300,
-                textAlign: 'center',
-                backgroundColor: '#f2f2f2',
+          <Grid item xs={12} sx={{ textAlign: 'center', my: 3 }}>
+            <img
+              src={img}
+              style={{
+                width: '100%',
+                borderRadius: '10px',
               }}
-            >
-              <img
-                src={img}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '10px',
-                }}
-              />
-            </Paper>
+            />
           </Grid>
           <Grid item xs={1} />
           <Grid item xs={10}>
             <Grid container>
               {tag.map((item: string, index: number) => (
-                <Grid item xs={4} key={index}>
+                <Grid
+                  item
+                  xs={4}
+                  key={index}
+                  sx={{ textAlign: 'center', mb: 2 }}
+                >
                   <Chip
                     label={item}
                     sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
@@ -94,7 +86,7 @@ const DetailPageView = ({
                     {hide ? (
                       <Typography>{text.slice(0, 30)}...</Typography>
                     ) : (
-                      <Typography sx={{ width: 30 }}>{text}</Typography>
+                      <Typography>{text}</Typography>
                     )}
                   </Grid>
                   {hide ? (
@@ -125,7 +117,9 @@ const DetailPageView = ({
             </Link>
           </Grid>
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
-            <img src="/save.png" />
+            <Button sx={{ p: 0 }}>
+              <img src="/save.png" />
+            </Button>
           </Grid>
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
             <Typography>수정하기</Typography>
