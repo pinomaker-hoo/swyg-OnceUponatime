@@ -63,6 +63,9 @@ const CardWritePageView = ({
                   height: 300,
                   textAlign: 'center',
                   backgroundColor: '#f2f2f2',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                 }}
               >
                 {previewUrl ? (
@@ -75,7 +78,13 @@ const CardWritePageView = ({
                     }}
                   />
                 ) : (
-                  <img src="/plus.png" />
+                  <img
+                    src="/plus.png"
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                    }}
+                  />
                 )}
               </Paper>
             </Button>
