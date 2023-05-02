@@ -106,8 +106,13 @@ const CardEditPageView = ({
           <Grid item xs={1} />
           <Grid item xs={10}>
             <Grid container>
-              {album.tag.map((item: any) => (
-                <Grid item xs={4} sx={{ textAlign: 'center', mt: 1 }}>
+              {album.tag.map((item: string, index: number) => (
+                <Grid
+                  item
+                  xs={4}
+                  sx={{ textAlign: 'center', mt: 1 }}
+                  key={index}
+                >
                   <Chip
                     label={item}
                     sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
