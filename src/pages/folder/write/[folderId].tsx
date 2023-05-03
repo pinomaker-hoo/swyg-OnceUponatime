@@ -65,6 +65,11 @@ const CardWritePage = () => {
     }
   }
 
+  const handleRemoveTag = (index: number) => {
+    const tag = album.tag.filter((v: string, i: number) => i !== index)
+    setData((cur: any) => ({ ...cur, tag }))
+  }
+
   const regContent = async () => {
     try {
       const imgUrl = await imgUpload(image)
@@ -90,6 +95,7 @@ const CardWritePage = () => {
       handleOnKeyPress={handleOnKeyPress}
       handleChangeTag={handleChangeTag}
       tag={tag}
+      handleRemoveTag={handleRemoveTag}
     />
   )
 }

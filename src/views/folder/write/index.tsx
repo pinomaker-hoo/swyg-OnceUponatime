@@ -19,6 +19,7 @@ interface Props {
   handleOnKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void
   handleChangeTag: (e: React.ChangeEvent<HTMLInputElement>) => void
   tag: string
+  handleRemoveTag: (index: number) => void
 }
 
 const CardWritePageView = ({
@@ -30,6 +31,7 @@ const CardWritePageView = ({
   handleOnKeyPress,
   handleChangeTag,
   tag,
+  handleRemoveTag,
 }: Props) => {
   const ref = useRef<any>()
 
@@ -119,6 +121,7 @@ const CardWritePageView = ({
                   <Chip
                     label={item}
                     sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
+                    onDelete={() => handleRemoveTag(index)}
                   />
                 </Grid>
               ))}
