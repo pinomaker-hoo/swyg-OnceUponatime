@@ -57,7 +57,6 @@ const CardEditPage = () => {
 
   const modifyContent = async () => {
     try {
-      console.log(album)
       if (image) {
         const imgUrl = await imgUpload(image)
         await updateAlbum({ ...album, imgUrl }, String(router.query.id))
