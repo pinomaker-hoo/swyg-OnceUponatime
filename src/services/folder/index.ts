@@ -22,12 +22,25 @@ const folderApi = {
     const querySnapshot = await getDocs(
       query(collection(db, 'folder'), where('uid', '==', uid))
     )
-    return querySnapshot.docs.map((item) => ({
-      name: String(item.data().name),
-      uid: String(item.data().uid),
-      id: item.id,
-      count: 0,
-    }))
+
+    const data = Promise.all(
+      querySnapshot.docs.map(async (item) => {
+        const { count } = (
+          await getCountFromServer(
+            query(collection(db, 'album'), where('folderId', '==', item.id))
+          )
+        ).data()
+
+        return {
+          name: String(item.data().name),
+          uid: String(item.data().uid),
+          id: item.id,
+          count,
+        }
+      })
+    )
+
+    return await data
   },
   deleteFolder: async (id: string) => {
     await deleteDoc(doc(db, 'folder', id))
