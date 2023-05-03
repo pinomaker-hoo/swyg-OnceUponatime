@@ -83,6 +83,11 @@ const CardEditPage = () => {
     }
   }
 
+  const handleRemoveTag = (index: number) => {
+    const tag = album.tag.filter((v: string, i: number) => i !== index)
+    setData((cur: any) => ({ ...cur, tag }))
+  }
+
   useEffect(() => {
     if (router.query.id) {
       getAlbum(String(router.query.id)).then((res) => {
@@ -102,6 +107,7 @@ const CardEditPage = () => {
       handleOnKeyPress={handleOnKeyPress}
       handleChangeTag={handleChangeTag}
       tag={tag}
+      handleRemoveTag={handleRemoveTag}
     />
   )
 }
