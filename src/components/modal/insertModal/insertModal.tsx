@@ -8,13 +8,17 @@ import {
   TextField,
   Grid,
 } from '@mui/material'
+import SelectModal from '../selectModal'
+import BasicModal from '../basicModal'
 
 interface InsertModalProps {
   state: boolean
   value: string
+  open: boolean
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleClose: () => void
   event: () => void
+  handleAlertClose: () => void
 }
 
 const InsertModalView = ({
@@ -23,6 +27,8 @@ const InsertModalView = ({
   value,
   setValue,
   event,
+  handleAlertClose,
+  open,
 }: InsertModalProps) => {
   return (
     <Dialog open={state}>
@@ -34,6 +40,7 @@ const InsertModalView = ({
             value={value}
             size="small"
             variant="standard"
+            label="앨범 이름"
           />
         </Grid>
       </Grid>
@@ -41,6 +48,11 @@ const InsertModalView = ({
         <Button onClick={event}>확인</Button>
         <Button onClick={handleClose}>취소</Button>
       </DialogActions>
+      <BasicModal
+        title="앨범 이름을 입력해주세요."
+        handleClose={handleAlertClose}
+        state={open}
+      />
     </Dialog>
   )
 }
