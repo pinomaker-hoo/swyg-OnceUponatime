@@ -62,7 +62,7 @@ const CardWritePage = () => {
   }
 
   const handleOnKeyPress = (e: any) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.keyCode === 32) {
       const tag = [...album.tag, e.target.value]
       setData((cur: any) => ({ ...cur, tag }))
 
