@@ -9,6 +9,7 @@ import { Grid, Typography, Button, Chip } from '@mui/material'
 
 // ** Other Imports
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { imgDownload } from 'services'
 
 interface DetailPageViewProps {
   title: string
@@ -33,6 +34,10 @@ const DetailPageView = ({
 
   const handleShow = () => setHide(false)
   const handleHide = () => setHide(true)
+
+  const testSave = async () => {
+    await imgDownload(img)
+  }
 
   return (
     <Grid container>
@@ -131,7 +136,7 @@ const DetailPageView = ({
             </Link>
           </Grid>
           <Grid item xs={6} sx={{ textAlign: 'center' }}>
-            <Button sx={{ p: 0 }}>
+            <Button sx={{ p: 0 }} onClick={testSave}>
               <img src="/save.png" />
             </Button>
           </Grid>

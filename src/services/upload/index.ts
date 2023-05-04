@@ -8,6 +8,21 @@ const upload = {
     const snapshot = await uploadBytes(imageRef, image)
     return await getDownloadURL(snapshot.ref)
   },
+  imgDownload: async (imageUrl: string) => {
+    const imageRef = ref(storage, imageUrl)
+
+    getDownloadURL(imageRef)
+      .then((downloadUrl) => {
+        const link = document.createElement('a')
+        link.href = downloadUrl
+        link.download = imageUrl
+
+        link.dispatchEvent(new MouseEvent('click'))
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
 }
 
-export const { imgUpload } = upload
+export const { imgUpload, imgDownload } = upload
