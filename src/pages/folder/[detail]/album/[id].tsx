@@ -28,9 +28,7 @@ const DetailPage = () => {
         setAlbum(res)
       })
 
-      setCopyLink(
-        `http://localhost:3002/folder/guest/${String(router.query.id)}`
-      )
+      setCopyLink(`http://localhost:3002/guest/${String(router.query.id)}`)
     }
   }, [router.query.id])
 
