@@ -38,7 +38,9 @@ const GuestDetailPageView = ({
             </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
-            <Typography>{title}</Typography>
+            <Typography variant="h6" color="#666666">
+              {title}
+            </Typography>
           </Grid>
           <Grid item xs={12} sx={{ textAlign: 'center', my: 3 }}>
             <img
@@ -50,7 +52,7 @@ const GuestDetailPageView = ({
             />
           </Grid>
           <Grid item xs={1} />
-          <Grid item xs={10}>
+          <Grid item xs={10} sx={{ height: '150px' }}>
             <Grid container>
               {tag.map((item: string, index: number) => (
                 <Grid
@@ -67,7 +69,17 @@ const GuestDetailPageView = ({
               ))}
               {text.length > 30 ? (
                 <>
-                  <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      mt: 5,
+                      my: 2,
+                      wordBreak: 'break-all',
+                      overflow: 'scroll',
+                      maxHeight: '100px',
+                    }}
+                  >
                     {hide ? (
                       <Typography>{text.slice(0, 30)}...</Typography>
                     ) : (
@@ -75,13 +87,13 @@ const GuestDetailPageView = ({
                     )}
                   </Grid>
                   {hide ? (
-                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ textAlign: 'center', mb: 2 }}>
                       <Button sx={{ p: 0 }}>
                         <img src="/down.png" onClick={handleShow} />
                       </Button>
                     </Grid>
                   ) : (
-                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ textAlign: 'center', mb: 2 }}>
                       <Button sx={{ p: 0 }}>
                         <img src="/top.png" onClick={handleHide} />
                       </Button>
