@@ -67,7 +67,7 @@ const DetailPageView = ({
             />
           </Grid>
           <Grid item xs={1} />
-          <Grid item xs={10}>
+          <Grid item xs={10} sx={{ height: '230px' }}>
             <Grid container>
               {tag.map((item: string, index: number) => (
                 <Grid
