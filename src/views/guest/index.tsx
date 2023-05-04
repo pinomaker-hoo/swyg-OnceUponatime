@@ -32,11 +32,7 @@ const GuestDetailPageView = ({
       <Grid item xs={1} />
       <Grid item xs={10} sx={{ mt: 3 }}>
         <Grid container>
-          <Grid item xs={2}>
-            <Link href={`/folder/${tabId}/list`}>
-              <img src="/back.png" />
-            </Link>
-          </Grid>
+          <Grid item xs={2} />
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" color="#666666">
               {title}
