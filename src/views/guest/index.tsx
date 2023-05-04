@@ -5,14 +5,13 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 // ** Mui Imports
-import { Grid, Typography, Button, Chip, Paper } from '@mui/material'
+import { Grid, Typography, Button, Chip } from '@mui/material'
 
 interface GuestDetailPageViewProps {
   title: string
   tag: string[]
   text: string
   img: string
-  id: number
   tabId: string
 }
 
@@ -21,7 +20,6 @@ const GuestDetailPageView = ({
   tag,
   text,
   img,
-  id,
   tabId,
 }: GuestDetailPageViewProps) => {
   const [hide, setHide] = useState<boolean>(true)
@@ -42,55 +40,62 @@ const GuestDetailPageView = ({
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
             <Typography>{title}</Typography>
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center', ml: 2, my: 5 }}>
-            <Paper
-              sx={{
-                boxShadow: 'none',
-                border: 1,
-                borderRadius: 2,
-                width: 300,
-                height: 300,
-                textAlign: 'center',
-                backgroundColor: '#f2f2f2',
+          <Grid item xs={12} sx={{ textAlign: 'center', my: 3 }}>
+            <img
+              src={img}
+              style={{
+                width: '100%',
+                borderRadius: '10px',
               }}
-            >
-              <img src={img} width="100%" />
-            </Paper>
+            />
           </Grid>
-          {tag.map((item: string, index: number) => (
-            <Grid item xs={4} key={index}>
-              <Chip label={item} />
-            </Grid>
-          ))}
-          {text.length > 30 ? (
-            <>
-              <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
-                {hide ? (
-                  <Typography>{text.slice(0, 30)}...</Typography>
-                ) : (
-                  <Typography sx={{ width: 30 }}>{text}</Typography>
-                )}
-              </Grid>
-              {hide ? (
-                <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                  <Button sx={{ p: 0 }}>
-                    <img src="/down.png" onClick={handleShow} />
-                  </Button>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
+            <Grid container>
+              {tag.map((item: string, index: number) => (
+                <Grid
+                  item
+                  xs={4}
+                  key={index}
+                  sx={{ textAlign: 'center', mb: 2 }}
+                >
+                  <Chip
+                    label={item}
+                    sx={{ color: '#999999', backgroundColor: '#DDDDDD' }}
+                  />
                 </Grid>
+              ))}
+              {text.length > 30 ? (
+                <>
+                  <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
+                    {hide ? (
+                      <Typography>{text.slice(0, 30)}...</Typography>
+                    ) : (
+                      <Typography>{text}</Typography>
+                    )}
+                  </Grid>
+                  {hide ? (
+                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                      <Button sx={{ p: 0 }}>
+                        <img src="/down.png" onClick={handleShow} />
+                      </Button>
+                    </Grid>
+                  ) : (
+                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                      <Button sx={{ p: 0 }}>
+                        <img src="/top.png" onClick={handleHide} />
+                      </Button>
+                    </Grid>
+                  )}
+                </>
               ) : (
-                <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                  <Button sx={{ p: 0 }}>
-                    <img src="/top.png" onClick={handleHide} />
-                  </Button>
+                <Grid item xs={12} sx={{ my: 5 }}>
+                  <Typography>{text}</Typography>
                 </Grid>
               )}
-            </>
-          ) : (
-            <Grid item xs={12} sx={{ my: 5 }}>
-              <Typography>{text}</Typography>
             </Grid>
-          )}
-          <Grid item xs={12} sx={{ mt: 18 }}>
+          </Grid>
+          <Grid item xs={12} sx={{ mt: 10 }}>
             <Link href="/">
               <Button
                 variant="contained"
