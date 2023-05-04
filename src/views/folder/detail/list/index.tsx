@@ -74,12 +74,12 @@ const FolderDetailListPageView = ({
           </Grid>
           <Grid item xs={12}>
             <Grid container sx={{ overflow: 'scroll', maxHeight: '710px' }}>
-              {datailData.map(({ id, imgUrl }: any) => (
+              {datailData.map(({ id, imgUrl }: any, index: number) => (
                 <Grid
                   item
                   xs={6}
                   sx={{ textAlign: 'center', mt: 2, px: 1 }}
-                  key={id}
+                  key={index}
                 >
                   {delState ? (
                     <DeleteCardComponent

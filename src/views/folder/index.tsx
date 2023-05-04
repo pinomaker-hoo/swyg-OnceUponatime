@@ -83,8 +83,8 @@ const FolderPageView = ({
                   <Folder title="전체보기" count={count} />
                 </Link>
               </Grid>
-              {data.map(({ id, name, count }: FolderType) => (
-                <Grid item xs={6} key={id} sx={{ mt: 1 }}>
+              {data.map(({ id, name, count }: FolderType, index: number) => (
+                <Grid item xs={6} key={index} sx={{ mt: 1 }}>
                   {deleteState ? (
                     <DeleteFolder
                       title={name}
