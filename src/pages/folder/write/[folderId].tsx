@@ -17,6 +17,8 @@ const CardWritePage = () => {
 
   const uid = useSelector(getUserUid)
 
+  const [open, setOpen] = useState<boolean>(false)
+
   const [image, setImage] = useState<any>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [tag, setTag] = useState<string>('')
@@ -28,6 +30,9 @@ const CardWritePage = () => {
     title: '',
     uid: '',
   })
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const handleChangeTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value)
@@ -72,6 +77,12 @@ const CardWritePage = () => {
 
   const regContent = async () => {
     try {
+      if (!image) {
+        handleOpen()
+
+        return
+      }
+
       const imgUrl = await imgUpload(image)
       await saveAlbum({
         ...album,
@@ -96,6 +107,8 @@ const CardWritePage = () => {
       handleChangeTag={handleChangeTag}
       tag={tag}
       handleRemoveTag={handleRemoveTag}
+      open={open}
+      handleClose={handleClose}
     />
   )
 }

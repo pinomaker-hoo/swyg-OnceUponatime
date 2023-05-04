@@ -9,6 +9,7 @@ import { Grid, Typography, Button, Paper, TextField, Chip } from '@mui/material'
 
 // ** Type Imports
 import { SaveAlbumType } from 'types'
+import BasicModal from 'components/modal/basicModal'
 
 interface Props {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -20,6 +21,8 @@ interface Props {
   handleChangeTag: (e: React.ChangeEvent<HTMLInputElement>) => void
   tag: string
   handleRemoveTag: (index: number) => void
+  open: boolean
+  handleClose: () => void
 }
 
 const CardWritePageView = ({
@@ -32,6 +35,8 @@ const CardWritePageView = ({
   handleChangeTag,
   tag,
   handleRemoveTag,
+  open,
+  handleClose,
 }: Props) => {
   const ref = useRef<any>()
 
@@ -101,7 +106,7 @@ const CardWritePageView = ({
           <Grid item xs={12} sx={{ textAlign: 'center', mt: 3 }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="제목"
               name="title"
               value={album.title}
@@ -131,7 +136,7 @@ const CardWritePageView = ({
           <Grid item xs={12} sx={{ textAlign: 'center', my: 1 }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="태그"
               value={tag}
               onChange={handleChangeTag}
@@ -141,7 +146,7 @@ const CardWritePageView = ({
           <Grid item xs={12} sx={{ textAlign: 'center' }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="내용"
               name="text"
               value={album.text}
@@ -151,6 +156,11 @@ const CardWritePageView = ({
         </Grid>
       </Grid>
       <Grid item xs={1} />
+      <BasicModal
+        state={open}
+        handleClose={handleClose}
+        title="이미지를 선택해주세요."
+      />
     </Grid>
   )
 }
