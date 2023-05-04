@@ -84,21 +84,33 @@ const DetailPageView = ({
               ))}
               {text.length > 30 ? (
                 <>
-                  <Grid item xs={12} sx={{ mt: 5, my: 2 }}>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      mt: 5,
+                      my: 2,
+                      wordBreak: 'break-all',
+                      overflow: 'scroll',
+                      maxHeight: '100px',
+                    }}
+                  >
                     {hide ? (
-                      <Typography>{text.slice(0, 30)}...</Typography>
+                      <Typography sx={{ width: '90%' }}>
+                        {text.slice(0, 30)}...
+                      </Typography>
                     ) : (
-                      <Typography>{text}</Typography>
+                      <Typography sx={{ width: '90%' }}>{text}</Typography>
                     )}
                   </Grid>
                   {hide ? (
-                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ textAlign: 'center', mb: 2 }}>
                       <Button sx={{ p: 0 }}>
                         <img src="/down.png" onClick={handleShow} />
                       </Button>
                     </Grid>
                   ) : (
-                    <Grid item xs={12} sx={{ textAlign: 'center' }}>
+                    <Grid item xs={12} sx={{ textAlign: 'center', mb: 2 }}>
                       <Button sx={{ p: 0 }}>
                         <img src="/top.png" onClick={handleHide} />
                       </Button>
