@@ -53,39 +53,27 @@ const CardEditPageView = ({
               <Typography>완료</Typography>
             </Button>
           </Grid>
-          <Grid item xs={12} sx={{ ml: 2, mt: 5 }}>
+          <Grid item xs={12} sx={{ ml: 2, mt: 5, textAlign: 'center' }}>
             <Button sx={{ p: 0 }} onClick={onClickImg}>
-              <Paper
-                sx={{
-                  boxShadow: 'none',
-                  border: 1,
-                  borderRadius: 2,
-                  width: 300,
-                  height: 300,
-                  textAlign: 'center',
-                  backgroundColor: '#f2f2f2',
-                }}
-              >
-                {previewUrl ? (
-                  <img
-                    src={previewUrl}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      borderRadius: '10px',
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={album.imgUrl}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      borderRadius: '10px',
-                    }}
-                  />
-                )}
-              </Paper>
+              {previewUrl ? (
+                <img
+                  src={previewUrl}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '10px',
+                  }}
+                />
+              ) : (
+                <img
+                  src={album.imgUrl}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '10px',
+                  }}
+                />
+              )}
             </Button>
             <input
               type="file"
@@ -98,15 +86,15 @@ const CardEditPageView = ({
           <Grid item xs={12} sx={{ textAlign: 'center', mt: 3 }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="제목"
               value={album.title}
               name="title"
               onChange={setAlbum}
             />
           </Grid>
-          <Grid item xs={1} />
-          <Grid item xs={10}>
+          <Grid item xs={0.5} />
+          <Grid item xs={11}>
             <Grid container>
               {album.tag.map((item: string, index: number) => (
                 <Grid
@@ -124,21 +112,21 @@ const CardEditPageView = ({
               ))}
             </Grid>
           </Grid>
-          <Grid item xs={1} />
+          <Grid item xs={0.5} />
           <Grid item xs={12} sx={{ textAlign: 'center', my: 1 }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="태그"
               value={tag}
               onChange={handleChangeTag}
               onKeyDown={handleOnKeyPress}
             />
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center' }}>
+          <Grid item xs={12} sx={{ textAlign: 'center', mt: 1 }}>
             <TextField
               variant="standard"
-              sx={{ width: '80%' }}
+              sx={{ width: '90%' }}
               label="내용"
               value={album.text}
               name="text"
