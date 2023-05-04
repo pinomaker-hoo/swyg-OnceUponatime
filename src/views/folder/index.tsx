@@ -43,7 +43,7 @@ const FolderPageView = ({
   const handleDeleteCancel = () => setDeleteState(false)
 
   return (
-    <Grid container>
+    <Grid container sx={{ maxHeight: '844px' }}>
       <Grid item xs={0.5} />
       <Grid item xs={11} sx={{ mt: 3 }}>
         <Grid container>
@@ -72,35 +72,43 @@ const FolderPageView = ({
             )}
           </Grid>
           <Grid item xs={12} sx={{ mt: 5 }} />
-          <Grid item xs={6} sx={{ mt: 1 }}>
-            <Link href={`/folder/0/list`} underline="none" color="ActiveBorder">
-              <Folder title="전체보기" count={count} />
-            </Link>
-          </Grid>
-          {data.map(({ id, name, count }: FolderType) => (
-            <Grid item xs={6} key={id} sx={{ mt: 1 }}>
-              {deleteState ? (
-                <DeleteFolder
-                  title={name}
-                  count={count}
-                  id={id}
-                  event={handleDeleteOpen}
-                />
-              ) : (
+          <Grid item xs={12}>
+            <Grid container sx={{ overflow: 'scroll', maxHeight: '744px' }}>
+              <Grid item xs={6} sx={{ mt: 1 }}>
                 <Link
-                  href={`/folder/${id}/list`}
+                  href={`/folder/0/list`}
                   underline="none"
                   color="ActiveBorder"
                 >
-                  <Folder title={name} count={count} />
+                  <Folder title="전체보기" count={count} />
                 </Link>
-              )}
+              </Grid>
+              {data.map(({ id, name, count }: FolderType) => (
+                <Grid item xs={6} key={id} sx={{ mt: 1 }}>
+                  {deleteState ? (
+                    <DeleteFolder
+                      title={name}
+                      count={count}
+                      id={id}
+                      event={handleDeleteOpen}
+                    />
+                  ) : (
+                    <Link
+                      href={`/folder/${id}/list`}
+                      underline="none"
+                      color="ActiveBorder"
+                    >
+                      <Folder title={name} count={count} />
+                    </Link>
+                  )}
+                </Grid>
+              ))}
+              <Grid item xs={6} sx={{ mt: 1 }}>
+                <Button onClick={handleOpen} fullWidth sx={{ p: 0 }}>
+                  <AddFolder />
+                </Button>
+              </Grid>
             </Grid>
-          ))}
-          <Grid item xs={6} sx={{ mt: 1 }}>
-            <Button onClick={handleOpen} fullWidth sx={{ p: 0 }}>
-              <AddFolder />
-            </Button>
           </Grid>
         </Grid>
       </Grid>
