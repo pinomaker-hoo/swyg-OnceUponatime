@@ -72,37 +72,45 @@ const FolderDetailListPageView = ({
               ))}
             </Tabs>
           </Grid>
-          {datailData.map(({ id, imgUrl }: any) => (
-            <Grid
-              item
-              xs={6}
-              sx={{ textAlign: 'center', mt: 2, px: 1 }}
-              key={id}
-            >
-              {delState ? (
-                <DeleteCardComponent
-                  id={id}
-                  img={imgUrl}
-                  handleOpen={handleOpen}
-                />
-              ) : (
-                <Link
-                  href={`/folder/${folderId}/album/${id}`}
-                  underline="none"
-                  color="ActiveBorder"
+          <Grid item xs={12}>
+            <Grid container sx={{ overflow: 'scroll', maxHeight: '710px' }}>
+              {datailData.map(({ id, imgUrl }: any) => (
+                <Grid
+                  item
+                  xs={6}
+                  sx={{ textAlign: 'center', mt: 2, px: 1 }}
+                  key={id}
                 >
-                  <CardComponent id={id} img={imgUrl} />
-                </Link>
+                  {delState ? (
+                    <DeleteCardComponent
+                      id={id}
+                      img={imgUrl}
+                      handleOpen={handleOpen}
+                    />
+                  ) : (
+                    <Link
+                      href={`/folder/${folderId}/album/${id}`}
+                      underline="none"
+                      color="ActiveBorder"
+                    >
+                      <CardComponent id={id} img={imgUrl} />
+                    </Link>
+                  )}
+                </Grid>
+              ))}
+              {tab !== '0' && (
+                <Grid
+                  item
+                  xs={6}
+                  sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}
+                >
+                  <Link href={`/folder/write/${folderId}`}>
+                    <AddCardComponent />
+                  </Link>
+                </Grid>
               )}
             </Grid>
-          ))}
-          {tab !== '0' && (
-            <Grid item xs={6} sx={{ textAlign: 'center', mt: 2, px: 1, mb: 3 }}>
-              <Link href={`/folder/write/${folderId}`}>
-                <AddCardComponent />
-              </Link>
-            </Grid>
-          )}
+          </Grid>
         </Grid>
       </Grid>
       <Grid item xs={0.5} />
