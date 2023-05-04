@@ -152,6 +152,7 @@ const CardWritePageView = ({
               value={album.text}
               onChange={setAlbum}
               multiline
+              inputProps={{ maxLength: 100 }}
             />
           </Grid>
         </Grid>
