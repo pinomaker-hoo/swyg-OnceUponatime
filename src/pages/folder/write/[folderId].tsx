@@ -18,6 +18,7 @@ const CardWritePage = () => {
   const uid = useSelector(getUserUid)
 
   const [open, setOpen] = useState<boolean>(false)
+  const [openTag, setOpenTag] = useState<boolean>(false)
 
   const [image, setImage] = useState<any>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
@@ -33,6 +34,9 @@ const CardWritePage = () => {
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const handleTagOpen = () => setOpenTag(true)
+  const handleTagClose = () => setOpenTag(false)
 
   const handleChangeTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value)
@@ -63,6 +67,12 @@ const CardWritePage = () => {
 
   const handleOnKeyPress = (e: any) => {
     if (e.key === 'Enter' || e.keyCode === 32) {
+      if (album.tag.length > 5) {
+        handleTagOpen()
+        setTag('')
+
+        return
+      }
       const tag = [...album.tag, e.target.value]
       setData((cur: any) => ({ ...cur, tag }))
 
@@ -109,6 +119,8 @@ const CardWritePage = () => {
       handleRemoveTag={handleRemoveTag}
       open={open}
       handleClose={handleClose}
+      openTag={openTag}
+      handleTagClose={handleTagClose}
     />
   )
 }

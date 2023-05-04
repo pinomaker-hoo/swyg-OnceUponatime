@@ -16,6 +16,7 @@ import useInput from 'hooks/useInput'
 const CardEditPage = () => {
   const router = useRouter()
 
+  const [open, setOpen] = useState<boolean>(false)
   const [image, setImage] = useState<any>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [tag, setTag] = useState<string>('')
@@ -27,6 +28,9 @@ const CardEditPage = () => {
     title: '',
     uid: '',
   })
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const handleChangeTag = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTag(e.target.value)
@@ -75,6 +79,12 @@ const CardEditPage = () => {
 
   const handleOnKeyPress = (e: any) => {
     if (e.key === 'Enter' || e.keyCode === 32) {
+      if (album.tag.length > 5) {
+        handleOpen()
+        setTag('')
+
+        return
+      }
       const tag = [...album.tag, e.target.value]
       setData((cur: any) => ({ ...cur, tag }))
 
@@ -107,6 +117,8 @@ const CardEditPage = () => {
       handleChangeTag={handleChangeTag}
       tag={tag}
       handleRemoveTag={handleRemoveTag}
+      open={open}
+      handleClose={handleClose}
     />
   )
 }

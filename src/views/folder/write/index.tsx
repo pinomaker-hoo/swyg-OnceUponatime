@@ -9,6 +9,8 @@ import { Grid, Typography, Button, Paper, TextField, Chip } from '@mui/material'
 
 // ** Type Imports
 import { SaveAlbumType } from 'types'
+
+// ** Other View Imports
 import BasicModal from 'components/modal/basicModal'
 
 interface Props {
@@ -23,6 +25,8 @@ interface Props {
   handleRemoveTag: (index: number) => void
   open: boolean
   handleClose: () => void
+  openTag: boolean
+  handleTagClose: () => void
 }
 
 const CardWritePageView = ({
@@ -37,6 +41,8 @@ const CardWritePageView = ({
   handleRemoveTag,
   open,
   handleClose,
+  openTag,
+  handleTagClose,
 }: Props) => {
   const ref = useRef<any>()
 
@@ -143,7 +149,14 @@ const CardWritePageView = ({
               onKeyDown={handleOnKeyPress}
             />
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center' }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              textAlign: 'center',
+              mt: 1,
+            }}
+          >
             <TextField
               variant="standard"
               sx={{ width: '90%' }}
@@ -162,6 +175,11 @@ const CardWritePageView = ({
         state={open}
         handleClose={handleClose}
         title="이미지를 선택해주세요."
+      />
+      <BasicModal
+        title="태그는 6개까지 가능합니다."
+        state={openTag}
+        handleClose={handleTagClose}
       />
     </Grid>
   )

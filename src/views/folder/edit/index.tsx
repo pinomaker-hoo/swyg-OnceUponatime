@@ -5,7 +5,10 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 // ** Mui Imports
-import { Grid, Typography, Button, Paper, TextField, Chip } from '@mui/material'
+import { Grid, Typography, Button, TextField, Chip } from '@mui/material'
+
+// ** Other View Imports
+import BasicModal from 'components/modal/basicModal'
 
 interface Props {
   album: any
@@ -18,6 +21,8 @@ interface Props {
   handleChangeTag: (e: React.ChangeEvent<HTMLInputElement>) => void
   tag: string
   handleRemoveTag: (index: number) => void
+  open: boolean
+  handleClose: () => void
 }
 
 const CardEditPageView = ({
@@ -31,6 +36,8 @@ const CardEditPageView = ({
   handleChangeTag,
   tag,
   handleRemoveTag,
+  open,
+  handleClose,
 }: Props) => {
   const ref = useRef<any>()
 
@@ -123,7 +130,14 @@ const CardEditPageView = ({
               onKeyDown={handleOnKeyPress}
             />
           </Grid>
-          <Grid item xs={12} sx={{ textAlign: 'center', mt: 1 }}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              textAlign: 'center',
+              mt: 1,
+            }}
+          >
             <TextField
               variant="standard"
               sx={{ width: '90%' }}
@@ -138,6 +152,11 @@ const CardEditPageView = ({
         </Grid>
       </Grid>
       <Grid item xs={1} />
+      <BasicModal
+        title="태그는 6개까지 가능합니다."
+        state={open}
+        handleClose={handleClose}
+      />
     </Grid>
   )
 }
