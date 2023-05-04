@@ -51,7 +51,9 @@ const FolderDetailListPageView = ({
             </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
-            <Typography>앨범</Typography>
+            <Typography variant="h6" color="#666666">
+              앨범
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             <Button sx={{ p: 0 }} onClick={handleDelete}>

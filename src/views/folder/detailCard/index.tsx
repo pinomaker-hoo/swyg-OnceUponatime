@@ -45,7 +45,9 @@ const DetailPageView = ({
             </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
-            <Typography>{title}</Typography>
+            <Typography variant="h6" color="#666666">
+              {title}
+            </Typography>
           </Grid>
           <Grid item xs={2} sx={{ textAlign: 'right' }}>
             <CopyToClipboard

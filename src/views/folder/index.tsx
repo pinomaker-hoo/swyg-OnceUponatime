@@ -53,7 +53,9 @@ const FolderPageView = ({
             </Link>
           </Grid>
           <Grid item xs={8} sx={{ textAlign: 'center' }}>
-            <Typography>폴더</Typography>
+            <Typography variant="h6" color="#666666">
+              폴더
+            </Typography>
           </Grid>
           <Grid item xs={2}>
             {deleteState ? (
