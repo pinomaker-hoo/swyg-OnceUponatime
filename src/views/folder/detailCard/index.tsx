@@ -101,11 +101,9 @@ const DetailPageView = ({
                     }}
                   >
                     {hide ? (
-                      <Typography sx={{ width: '90%' }}>
-                        {text.slice(0, 30)}...
-                      </Typography>
+                      <Typography>{text.slice(0, 30)}...</Typography>
                     ) : (
-                      <Typography sx={{ width: '90%' }}>{text}</Typography>
+                      <Typography>{text}</Typography>
                     )}
                   </Grid>
                   {hide ? (
