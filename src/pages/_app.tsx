@@ -23,10 +23,12 @@ const App = ({ Component, pageProps }: AppProps) => {
         <GlobalStyles styles={{ backgroundColor: 'blue' }} />
         <CssBaseline />
         <div className={isMobile ? '' : 'container'}>
-          <div className={isMobile ? '' : 'content'}>
-            <ProtectRoute>
-              <Component {...pageProps} />
-            </ProtectRoute>
+          <div className={isMobile ? '' : 'wrapper'}>
+            <div className={isMobile ? '' : 'content'}>
+              <ProtectRoute>
+                <Component {...pageProps} />
+              </ProtectRoute>
+            </div>
           </div>
         </div>
       </ThemeProvider>
