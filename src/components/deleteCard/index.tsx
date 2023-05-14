@@ -14,7 +14,14 @@ const DeleteCardComponent = ({ id, img, handleOpen }: CardProps) => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Card sx={{ textAlign: 'center', width: '160px', height: '160px' }}>
+        <Card
+          sx={{
+            textAlign: 'center',
+            width: '160px',
+            height: '160px',
+            boxShadow: 'none',
+          }}
+        >
           <Grid
             item
             xs={12}
