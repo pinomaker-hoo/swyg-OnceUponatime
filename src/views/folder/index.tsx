@@ -8,8 +8,8 @@ import { Button, Grid, Typography, Link } from '@mui/material'
 import Folder from 'components/folder'
 import InsertModal from 'components/modal/insertModal'
 import AddFolder from 'components/addFolder'
-import DeleteFolder from 'components/deleteFolder'
 import SelectModal from 'components/modal/selectModal'
+import FolderAll from 'components/folderAll'
 
 // ** Type Imports
 import { FolderType } from 'types'
@@ -79,28 +79,29 @@ const FolderPageView = ({
                   href={`/folder/0/list`}
                   underline="none"
                   color="ActiveBorder"
+                  onClick={deleteState ? (e) => e.preventDefault() : () => null}
                 >
-                  <Folder title="전체보기" count={count} />
+                  <FolderAll title="전체보기" count={count} />
                 </Link>
               </Grid>
               {data.map(({ id, name, count }: FolderType, index: number) => (
                 <Grid item xs={6} key={index} sx={{ mt: 1 }}>
-                  {deleteState ? (
-                    <DeleteFolder
+                  <Link
+                    href={`/folder/${id}/list`}
+                    underline="none"
+                    color="ActiveBorder"
+                    onClick={
+                      deleteState ? (e) => e.preventDefault() : () => null
+                    }
+                  >
+                    <Folder
                       title={name}
                       count={count}
                       id={id}
                       event={handleDeleteOpen}
+                      deleteState={deleteState}
                     />
-                  ) : (
-                    <Link
-                      href={`/folder/${id}/list`}
-                      underline="none"
-                      color="ActiveBorder"
-                    >
-                      <Folder title={name} count={count} />
-                    </Link>
-                  )}
+                  </Link>
                 </Grid>
               ))}
               <Grid item xs={6} sx={{ mt: 1 }}>

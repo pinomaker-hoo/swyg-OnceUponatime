@@ -1,14 +1,12 @@
 // ** Mui Import
-import { Button, Grid, Typography } from '@mui/material'
+import { Grid, Typography, Button } from '@mui/material'
 
-interface Props {
+interface FolderProps {
   title: string
   count: number
-  id: string
-  event: (id: string) => void
 }
 
-const DeleteFolder = ({ title, count, event, id }: Props) => {
+const FolderAll = ({ title, count }: FolderProps) => {
   return (
     <Grid container>
       <Grid item xs={12} sx={{ textAlign: 'center' }}>
@@ -20,26 +18,12 @@ const DeleteFolder = ({ title, count, event, id }: Props) => {
           xs={12}
           sx={{
             position: 'absolute',
-            left: '90%',
-            top: '-400%',
-            transform: 'translate(-50%, -50%)',
-          }}
-        >
-          <Button onClick={() => event(id)} sx={{ p: 0 }}>
-            <img src="/delete.png" />
-          </Button>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            position: 'absolute',
             left: '50%',
             top: '-200%',
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Typography variant="h6" sx={{ fontSize: 19, color: '#777777' }}>
+          <Typography variant="h6" sx={{ fontSize: 19 }}>
             {title}
           </Typography>
         </Grid>
@@ -53,7 +37,7 @@ const DeleteFolder = ({ title, count, event, id }: Props) => {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Typography variant="body1" sx={{ fontSize: 15, color: '#777777' }}>
+          <Typography variant="body1" sx={{ fontSize: 15 }}>
             {count}
           </Typography>
         </Grid>
@@ -62,4 +46,4 @@ const DeleteFolder = ({ title, count, event, id }: Props) => {
   )
 }
 
-export default DeleteFolder
+export default FolderAll
