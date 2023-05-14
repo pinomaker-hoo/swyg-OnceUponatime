@@ -8,7 +8,6 @@ import { Button, Grid, Typography, Tabs, Tab, Link } from '@mui/material'
 import { FolderType } from 'types'
 
 // ** Other View Imports
-import DeleteCardComponent from 'components/deleteCard'
 import CardComponent from 'components/card'
 import AddCardComponent from 'components/addCard'
 import SelectModal from 'components/modal/selectModal'
@@ -81,21 +80,19 @@ const FolderDetailListPageView = ({
                   sx={{ textAlign: 'center', mt: 2, px: 1 }}
                   key={index}
                 >
-                  {delState ? (
-                    <DeleteCardComponent
+                  <Link
+                    href={`/folder/${folderId}/album/${id}`}
+                    underline="none"
+                    color="ActiveBorder"
+                    onClick={delState ? (e) => e.preventDefault() : () => null}
+                  >
+                    <CardComponent
                       id={id}
                       img={imgUrl}
+                      delState={delState}
                       handleOpen={handleOpen}
                     />
-                  ) : (
-                    <Link
-                      href={`/folder/${folderId}/album/${id}`}
-                      underline="none"
-                      color="ActiveBorder"
-                    >
-                      <CardComponent id={id} img={imgUrl} />
-                    </Link>
-                  )}
+                  </Link>
                 </Grid>
               ))}
               {tab !== '0' && (

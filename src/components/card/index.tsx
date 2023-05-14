@@ -1,12 +1,14 @@
 // ** Mui Imports
-import { Card, Grid } from '@mui/material'
+import { Card, Grid, Button } from '@mui/material'
 
 interface CardProps {
-  id: number
+  id: string
   img: string
+  delState: boolean
+  handleOpen: (id: string) => void
 }
 
-const CardComponent = ({ img }: CardProps) => {
+const CardComponent = ({ id, img, delState, handleOpen }: CardProps) => {
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -18,6 +20,20 @@ const CardComponent = ({ img }: CardProps) => {
             boxShadow: 'none',
           }}
         >
+          {delState && (
+            <Grid
+              item
+              xs={12}
+              sx={{
+                position: 'absolute',
+                transform: 'translate(200%, -50%)',
+              }}
+            >
+              <Button onClick={() => handleOpen(id)} sx={{ p: 0 }}>
+                <img src="/delete.png" />
+              </Button>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <img
               src={img}
